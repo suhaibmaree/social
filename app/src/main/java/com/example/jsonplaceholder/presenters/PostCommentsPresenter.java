@@ -3,8 +3,9 @@ package com.example.jsonplaceholder.presenters;
 import android.util.Log;
 
 import com.example.jsonplaceholder.data.DataManager;
+import com.example.jsonplaceholder.data.commensmodel.UserComment;
 import com.example.jsonplaceholder.data.postsmodel.UserPost;
-import com.example.jsonplaceholder.presenters.interfaces.PostView;
+import com.example.jsonplaceholder.presenters.interfaces.CommentView;
 import com.example.mylibrary.BasePresenter;
 
 import java.util.List;
@@ -14,21 +15,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class UserPostPresenter extends BasePresenter<PostView> {
+public class PostCommentsPresenter extends BasePresenter<CommentView> {
 
-    private static final String TAG = "UserPresenter";
+    private static final String TAG = "PostCommentsPresenter";
     private Disposable mDisposable;
 
-    public void getPosts(String id) {
+
+    public void getComments(String id) {
 
         Log.d(TAG, "Initial data manager");
-
         DataManager manager = DataManager.getInstance();
 
-        manager.getPosts(id)
+        manager.getComments(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<UserPost>>() {
+                .subscribe(new Observer<List<UserComment>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
@@ -36,8 +37,8 @@ public class UserPostPresenter extends BasePresenter<PostView> {
                     }
 
                     @Override
-                    public void onNext(List<UserPost> posts) {
-                        mMvpView.displayPosts(posts);
+                    public void onNext(List<UserComment> posts) {
+                        mMvpView.displayComments(posts);
                     }
 
                     @Override

@@ -11,39 +11,40 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
+import com.example.jsonplaceholder.data.commensmodel.UserComment;
 import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.views.CommentsActivity;
 
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
-    private static final String TAG = "PostsAdapter";
+    private static final String TAG = "CommentsAdapter";
     private Context mContext;
-    private List<UserPost> mList;
+    private List<UserComment> mList;
 
-    public PostsAdapter(Context mContext, List<UserPost> list) {
+    public CommentsAdapter(Context mContext, List<UserComment> list) {
         this.mContext = mContext;
         this.mList = list;
     }
 
     @NonNull
     @Override
-    public PostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_card, parent, false);
-        PostsAdapter.ViewHolder viewHolder = new PostsAdapter.ViewHolder(view);
+    public CommentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_card, parent, false);
+        CommentsAdapter.ViewHolder viewHolder = new CommentsAdapter.ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        UserPost post = mList.get(position);
-        holder.mTitle.setText(post.getTitle());
-        holder.mBody.setText(post.getBody());
+    public void onBindViewHolder(@NonNull CommentsAdapter.ViewHolder holder, int position) {
+        UserComment comment = mList.get(position);
+        holder.mName.setText(comment.getName());
+        holder.mCommentBody.setText(comment.getBody());
     }
 
-    public void setmList(List<UserPost> mList) {
+
+    public void setmList(List<UserComment> mList) {
         this.mList = mList;
     }
 
@@ -54,15 +55,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle;
-        private TextView mBody;
+        public TextView mName;
+        public TextView mCommentBody;
 
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.post_title);
-            mBody = itemView.findViewById(R.id.post_body);
+            mName = itemView.findViewById(R.id.comment_name);
+            mCommentBody = itemView.findViewById(R.id.comment_body);
 
             itemView.setOnClickListener(v -> {
                 CommentsActivity.startCommentActivity((Activity) itemView.getContext(),

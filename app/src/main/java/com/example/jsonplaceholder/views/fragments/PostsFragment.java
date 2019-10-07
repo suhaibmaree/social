@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.Adapters.PostsAdapter;
-import com.example.jsonplaceholder.Adapters.UserAdapter;
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.presenters.UserPostPresenter;
 import com.example.jsonplaceholder.presenters.interfaces.PostView;
-import com.example.jsonplaceholder.views.MainActivity;
 
 import java.util.List;
 
@@ -73,7 +70,7 @@ public class PostsFragment extends Fragment implements PostView {
     private void initialPresenter(String id, PostView v) {
 
         mPresenter = new UserPostPresenter();
-        mPresenter.getUsers(id);
+        mPresenter.getPosts(id);
         mPresenter.attachView(v);
 
     }

@@ -2,9 +2,11 @@ package com.example.jsonplaceholder.data;
 
 import android.util.Log;
 
+import com.example.jsonplaceholder.api.PostCommentsService;
 import com.example.jsonplaceholder.api.UsersClient;
 import com.example.jsonplaceholder.api.UsersPostsService;
 import com.example.jsonplaceholder.api.UsersService;
+import com.example.jsonplaceholder.data.commensmodel.UserComment;
 import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 
@@ -36,4 +38,11 @@ public class DataManager {
         Log.d(TAG , "initial user posts client");
         return UsersClient.getUsers().create(UsersPostsService.class).getUserPosts(id);
     }
+
+    public Observable<List<UserComment>> getComments(String id) {
+
+        Log.d(TAG , "initial user posts client");
+        return UsersClient.getUsers().create(PostCommentsService.class).getComments(id);
+    }
+
 }

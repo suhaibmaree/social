@@ -2,7 +2,6 @@ package com.example.jsonplaceholder.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
-import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 import com.example.jsonplaceholder.views.DetailsActivity;
-import com.example.jsonplaceholder.views.MainActivity;
 
 import java.util.List;
 
@@ -79,7 +76,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             itemView.setOnClickListener(v -> {
 
-                DetailsActivity.startActivity((Activity) itemView.getContext(), mList.get(getAdapterPosition()));
+                DetailsActivity.startDetailsActivity((Activity) itemView.getContext(), mList.get(getAdapterPosition()));
 
             });
 

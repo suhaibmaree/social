@@ -22,23 +22,23 @@
 
 
             <TextView
-                android:id="@+id/post_title"
+                android:id="@+id/comment_name"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Title" />
+                tools:text="Name" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
 
             <TextView
-                android:id="@+id/post_body"
+                android:id="@+id/comment_body"
                 style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/activity_margin_quarter"
-                tools:text="Body" />
+                tools:text="Comment Body" />
 
 
 
