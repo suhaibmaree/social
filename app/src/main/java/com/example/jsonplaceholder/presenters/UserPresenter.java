@@ -42,7 +42,7 @@ public class UserPresenter extends BasePresenter<UserView> {
 
                     @Override
                     public void onError(Throwable e) {
-
+                    e.printStackTrace();
                     }
 
                     @Override

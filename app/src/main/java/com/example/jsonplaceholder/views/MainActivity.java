@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements UserView {
     public void displayUsers(List<UserModel> userList) {
 
         Log.d(TAG , "My list size: "+userList.size());
-
         initialRecyclerView(userList);
     }
 
@@ -58,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements UserView {
         mAdapter = new UserAdapter(MainActivity.this , list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter.setmList(list);
-        mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

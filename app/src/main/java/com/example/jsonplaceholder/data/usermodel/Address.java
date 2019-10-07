@@ -1,5 +1,8 @@
 package com.example.jsonplaceholder.data.usermodel;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -17,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "zipcode",
         "geo"
 })
-public class Address {
+public class Address implements Parcelable {
 
     @JsonProperty("street")
     private String street;
@@ -31,6 +34,28 @@ public class Address {
     private Geo geo;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    protected Address(Parcel in) {
+        street = in.readString();
+        suite = in.readString();
+        city = in.readString();
+        zipcode = in.readString();
+    }
+
+    public Address() {
+    }
+
+    public static final Creator<Address> CREATOR = new Creator<Address>() {
+        @Override
+        public Address createFromParcel(Parcel in) {
+            return new Address(in);
+        }
+
+        @Override
+        public Address[] newArray(int size) {
+            return new Address[size];
+        }
+    };
 
     @JsonProperty("street")
     public String getStreet() {
@@ -92,4 +117,16 @@ public class Address {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(street);
+        dest.writeString(suite);
+        dest.writeString(city);
+        dest.writeString(zipcode);
+    }
 }

@@ -1,5 +1,8 @@
 package com.example.jsonplaceholder.data.usermodel;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -20,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "website",
         "company"
 })
-public class UserModel {
+public class UserModel implements Parcelable {
 
     @JsonProperty("id")
     private Integer id;
@@ -40,6 +43,36 @@ public class UserModel {
     private Company company;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    public UserModel() {
+    }
+
+    protected UserModel(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        username = in.readString();
+        email = in.readString();
+        address = in.readParcelable(Address.class.getClassLoader());
+        phone = in.readString();
+        website = in.readString();
+        company = in.readParcelable(Company.class.getClassLoader());
+    }
+
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
 
     @JsonProperty("id")
     public Integer getId() {
@@ -129,5 +162,27 @@ public class UserModel {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(name);
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeParcelable(address, flags);
+        dest.writeString(phone);
+        dest.writeString(website);
+        dest.writeParcelable(company, flags);
     }
 }

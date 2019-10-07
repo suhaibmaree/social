@@ -1,5 +1,8 @@
 package com.example.jsonplaceholder.data.usermodel;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -14,7 +17,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "lat",
         "lng"
 })
-public class Geo {
+public class Geo implements Parcelable {
+
+    public Geo() {
+    }
 
     @JsonProperty("lat")
     private String lat;
@@ -22,6 +28,23 @@ public class Geo {
     private String lng;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    protected Geo(Parcel in) {
+        lat = in.readString();
+        lng = in.readString();
+    }
+
+    public static final Creator<Geo> CREATOR = new Creator<Geo>() {
+        @Override
+        public Geo createFromParcel(Parcel in) {
+            return new Geo(in);
+        }
+
+        @Override
+        public Geo[] newArray(int size) {
+            return new Geo[size];
+        }
+    };
 
     @JsonProperty("lat")
     public String getLat() {
@@ -53,4 +76,14 @@ public class Geo {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(lat);
+        dest.writeString(lng);
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.jsonplaceholder.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
+import com.example.jsonplaceholder.views.DetailsActivity;
+import com.example.jsonplaceholder.views.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private static final String TAG = "UserAdapter";
     private Context mContext;
-    private List<UserModel> mList = new ArrayList<>();
+    private List<UserModel> mList;
 
     public UserAdapter(Context mContext, List<UserModel> list) {
         this.mContext = mContext;
@@ -42,7 +45,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.mName.setText(model.getName());
         holder.mUserName.setText(model.getUsername());
         holder.mEmail.setText(model.getEmail());
-        holder.mId.setText("ID: "+model.getId().toString());
+        holder.mId.setText("ID: " + model.getId().toString());
+
+
 
     }
 
@@ -68,8 +73,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             mName = itemView.findViewById(R.id.name);
             mUserName = itemView.findViewById(R.id.username);
-            mEmail = itemView.findViewById(R.id.username);
+            mEmail = itemView.findViewById(R.id.email);
             mId = itemView.findViewById(R.id.id);
+
+            itemView.setOnClickListener(v -> {
+
+                DetailsActivity.startActivity((Activity) itemView.getContext(), mList.get(getAdapterPosition()));
+
+            });
 
         }
     }
