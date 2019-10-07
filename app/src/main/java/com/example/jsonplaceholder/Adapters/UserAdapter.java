@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
+import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 import com.example.jsonplaceholder.views.DetailsActivity;
 import com.example.jsonplaceholder.views.MainActivity;

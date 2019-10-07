@@ -48,7 +48,7 @@ public class AlbumsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_albums, container , false);
         TextView textView =view.findViewById(R.id.album_text);
-        textView.setText("Fragment #" + page);
+        textView.setText("Album for user id: " + id);
         return view;
 
     }

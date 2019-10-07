@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.jsonplaceholder.Adapters.UserAdapter;
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 import com.example.jsonplaceholder.presenters.UserPresenter;
-import com.example.jsonplaceholder.presenters.UserView;
+import com.example.jsonplaceholder.presenters.interfaces.UserView;
 
 import java.util.List;
 

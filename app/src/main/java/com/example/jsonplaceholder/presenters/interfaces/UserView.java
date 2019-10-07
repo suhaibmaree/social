@@ -1,4 +1,4 @@
-package com.example.jsonplaceholder.presenters;
+package com.example.jsonplaceholder.presenters.interfaces;
 
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 import com.example.mylibrary.MvpView;

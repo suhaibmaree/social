@@ -3,12 +3,12 @@ package com.example.jsonplaceholder.Adapters;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.jsonplaceholder.views.fragments.AlbumsFragment;
 import com.example.jsonplaceholder.views.fragments.PostsFragment;
 
-public class DetailsPagerAdapter extends FragmentPagerAdapter {
+public class DetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private static int NUM_ITEM = 2;
     private int id;
@@ -18,12 +18,10 @@ public class DetailsPagerAdapter extends FragmentPagerAdapter {
     }
 
 
-
-    public DetailsPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+    public DetailsPagerAdapter(@NonNull FragmentManager fm, int id) {
+        super(fm);
+        this.id = id;
     }
-
-
 
     @NonNull
     @Override
