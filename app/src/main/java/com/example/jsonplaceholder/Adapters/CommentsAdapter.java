@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.commensmodel.UserComment;
-import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.views.CommentsActivity;
 
 import java.util.List;
