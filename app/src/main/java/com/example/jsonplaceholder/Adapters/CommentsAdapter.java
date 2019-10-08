@@ -63,11 +63,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             super(itemView);
             mName = itemView.findViewById(R.id.comment_name);
             mCommentBody = itemView.findViewById(R.id.comment_body);
-
-            itemView.setOnClickListener(v -> {
-                CommentsActivity.startCommentActivity((Activity) itemView.getContext(),
-                        mList.get(getAdapterPosition()).getId());
-            });
         }
     }
 }

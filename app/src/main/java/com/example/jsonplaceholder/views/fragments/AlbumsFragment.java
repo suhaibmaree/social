@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jsonplaceholder.Adapters.AlbumsAdapter;
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.albumsmodel.UserAlbum;
 import com.example.jsonplaceholder.presenters.UserAlbumsPresenter;
@@ -18,16 +21,19 @@ import com.example.jsonplaceholder.presenters.interfaces.AlbumView;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 public class AlbumsFragment extends Fragment implements AlbumView {
 
     private static final String TAG = "AlbumsFragment";
     private int id;
     private int page;
     private String title;
-
+    private ProgressBar mProgress;
     private UserAlbumsPresenter mPresenter;
+
+    //@BindView(R.id.album_recycler)
+    RecyclerView mRecycler;
+
+    private AlbumsAdapter mAdapter;
 
 
     public static AlbumsFragment newInstance(int page, String title, int id) {
@@ -58,17 +64,17 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle bundle) {
 
         View view = inflater.inflate(R.layout.fragment_albums, container , false);
-        TextView textView =view.findViewById(R.id.album_text);
-        textView.setText("Album for user id: " + id);
-
+        mProgress = view.findViewById(R.id.album_indicator);
         initialPresenter();
 
+        //ButterKnife.bind(view);
         return view;
 
     }
 
     private void initialPresenter() {
 
+        mProgress.setVisibility(View.VISIBLE);
         mPresenter = new UserAlbumsPresenter();
         mPresenter.getAlbums(String.valueOf(id));
 
@@ -78,6 +84,17 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     public void displayAlbum(List<UserAlbum> list) {
 
         Log.d(TAG , "user id "+id+" album is: " + list.size());
+        initialRecycler(list);
+    }
+
+    private void initialRecycler(List<UserAlbum> album) {
+        mRecycler = getView().findViewById(R.id.album_recycler);
+        mAdapter = new AlbumsAdapter(getView().getContext() ,album);
+        mRecycler.setLayoutManager(new LinearLayoutManager(getView().getContext()));
+        mAdapter.setmList(album);
+        mRecycler.setAdapter(mAdapter);
+        mProgress.setVisibility(View.INVISIBLE);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -89,6 +106,7 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     @Override
     public void onStop() {
         mPresenter.detachView();
+        mProgress.setVisibility(View.INVISIBLE);
         super.onStop();
     }
 }

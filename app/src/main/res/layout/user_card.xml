@@ -8,24 +8,22 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:elevation="8dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:background="@android:color/white"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/poster_thumb_width"
-            android:paddingLeft="@dimen/poster_thumb_width"
-            android:paddingTop="@dimen/activity_margin_half"
-            android:paddingEnd="@dimen/activity_margin"
-            android:paddingRight="@dimen/activity_margin"
-            android:paddingBottom="@dimen/activity_margin">
+            android:padding="@dimen/activity_margin_quarter">
 
-            <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/user" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"

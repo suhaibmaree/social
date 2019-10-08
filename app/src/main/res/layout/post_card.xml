@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:elevation="8dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,12 +21,28 @@
             android:padding="@dimen/activity_margin_quarter">
 
 
-            <TextView
-                android:id="@+id/post_title"
-                style="@style/TextAppearance.AppCompat.Headline"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Title" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_post"/>
+
+                <TextView
+                    android:id="@+id/post_title"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Title"
+                    android:layout_marginLeft="@dimen/activity_margin_half"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -41,12 +57,10 @@
                 tools:text="Body" />
 
 
-
-
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
 
+    </androidx.cardview.widget.CardView>
 
 
 </FrameLayout>

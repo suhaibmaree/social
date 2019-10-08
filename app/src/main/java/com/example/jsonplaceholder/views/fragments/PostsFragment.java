@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,8 @@ public class PostsFragment extends Fragment implements PostView {
     private UserPostPresenter mPresenter;
     private RecyclerView mRecycler;
     private PostsAdapter mAdapter;
+
+    private ProgressBar mProgress;
     private static final String TAG = "PostsFragment";
 
 
@@ -58,9 +61,9 @@ public class PostsFragment extends Fragment implements PostView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle bundle) {
         View view = inflater.inflate(R.layout.fragment_posts, container, false);
+        mProgress = view.findViewById(R.id.pots_indicator);
 
         initialPresenter(String.valueOf(id), this);
-
 
         return view;
 
@@ -68,7 +71,7 @@ public class PostsFragment extends Fragment implements PostView {
 
 
     private void initialPresenter(String id, PostView v) {
-
+        mProgress.setVisibility(View.VISIBLE);
         mPresenter = new UserPostPresenter();
         mPresenter.getPosts(id);
         mPresenter.attachView(v);
@@ -90,12 +93,15 @@ public class PostsFragment extends Fragment implements PostView {
         mRecycler.setLayoutManager(new LinearLayoutManager(getView().getContext()));
         mAdapter.setmList(posts);
         mRecycler.setAdapter(mAdapter);
+
+        mProgress.setVisibility(View.INVISIBLE);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        mProgress.setVisibility(View.INVISIBLE);
         mPresenter.detachView();
     }
 }

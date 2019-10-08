@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:elevation="8dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_margin_quarter">
+
+
+        <ImageView
+                android:id="@+id/album_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/ic_photo_album"
+                />
+
+            <TextView
+                android:id="@+id/album_name"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                tools:text = "Album name"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/activity_margin_quarter"
+                style="@style/TextAppearance.AppCompat.Headline"/>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
