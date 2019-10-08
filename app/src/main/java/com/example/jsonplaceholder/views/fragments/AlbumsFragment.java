@@ -30,7 +30,6 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     private ProgressBar mProgress;
     private UserAlbumsPresenter mPresenter;
 
-    //@BindView(R.id.album_recycler)
     RecyclerView mRecycler;
 
     private AlbumsAdapter mAdapter;
@@ -67,7 +66,6 @@ public class AlbumsFragment extends Fragment implements AlbumView {
         mProgress = view.findViewById(R.id.album_indicator);
         initialPresenter();
 
-        //ButterKnife.bind(view);
         return view;
 
     }
@@ -106,7 +104,6 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     @Override
     public void onStop() {
         mPresenter.detachView();
-        mProgress.setVisibility(View.INVISIBLE);
         super.onStop();
     }
 }

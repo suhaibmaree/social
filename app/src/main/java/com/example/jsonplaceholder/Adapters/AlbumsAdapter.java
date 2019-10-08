@@ -1,5 +1,6 @@
 package com.example.jsonplaceholder.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jsonplaceholder.R;
 import com.example.jsonplaceholder.data.albumsmodel.UserAlbum;
+import com.example.jsonplaceholder.views.PhotosActivity;
 
 import java.util.List;
 
@@ -35,9 +37,9 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull AlbumsAdapter.ViewHolder holder, int position) {
+
         UserAlbum album = mList.get(position);
         holder.albumName.setText(album.getTitle());
-
 
     }
 
@@ -54,13 +56,16 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
 
         private TextView albumName;
 
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             albumName = itemView.findViewById(R.id.album_name);
 
             itemView.setOnClickListener(v -> {
-
+                PhotosActivity.startActivity((Activity) itemView.getContext(),
+                       String.valueOf( mList.get(getAdapterPosition()).getId()));
             });
         }
     }

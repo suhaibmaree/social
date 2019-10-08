@@ -2,6 +2,7 @@ package com.example.jsonplaceholder.data;
 
 import android.util.Log;
 
+import com.example.jsonplaceholder.api.AlbumPhotosService;
 import com.example.jsonplaceholder.api.PostCommentsService;
 import com.example.jsonplaceholder.api.UsersAlbumsService;
 import com.example.jsonplaceholder.api.UsersClient;
@@ -9,6 +10,7 @@ import com.example.jsonplaceholder.api.UsersPostsService;
 import com.example.jsonplaceholder.api.UsersService;
 import com.example.jsonplaceholder.data.albumsmodel.UserAlbum;
 import com.example.jsonplaceholder.data.commensmodel.UserComment;
+import com.example.jsonplaceholder.data.photosmodel.AlbumsPhoto;
 import com.example.jsonplaceholder.data.postsmodel.UserPost;
 import com.example.jsonplaceholder.data.usermodel.UserModel;
 
@@ -53,5 +55,13 @@ public class DataManager {
         return UsersClient.getUsers().create(UsersAlbumsService.class).getAlbums(id);
 
     }
+
+    public Observable<List<AlbumsPhoto>> getPhotos(String id){
+        Log.d(TAG , "initial user albums client");
+
+        return UsersClient.getUsers().create(AlbumPhotosService.class).getPhotos(id);
+
+    }
+
 
 }
