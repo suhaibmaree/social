@@ -39,7 +39,7 @@ public class AlbumsFragment extends Fragment implements AlbumView {
 
         AlbumsFragment fragment = new AlbumsFragment();
         Bundle args = new Bundle();
-        args.putInt("page", page);
+        args.putInt("page", page);//put keys as constants
         args.putString("title", title);
         args.putInt("id", id);
         fragment.setArguments(args);
@@ -63,7 +63,7 @@ public class AlbumsFragment extends Fragment implements AlbumView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle bundle) {
 
         View view = inflater.inflate(R.layout.fragment_albums, container , false);
-        mProgress = view.findViewById(R.id.album_indicator);
+        mProgress = view.findViewById(R.id.album_indicator);//use butterknife instead
         initialPresenter();
 
         return view;
